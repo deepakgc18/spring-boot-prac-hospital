@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.hospital.model.Patient;
@@ -25,8 +26,9 @@ public class PatientController {
         return patientService.getAllPatients();
     }
 
-    @GetMapping("/patients/{id}")
+    @GetMapping("/patients/id/{id}")
     public Optional<Patient> patientByID(@PathVariable String id) {
+        System.out.println("REched");
         return patientService.getPatientByID(id);
     }
 
@@ -34,5 +36,21 @@ public class PatientController {
     public boolean addPatient(@RequestBody Patient patient) {
 
         return patientService.insertPatient(patient);
+    }
+
+    @DeleteMapping("/patients/{id}")
+    public ResponseEntity<String> deletePatientByID(@PathVariable String id) {
+        return patientService.deletePatientByID(id);
+    }
+
+    @GetMapping("/patients/name/{name}")
+    public List<Patient> findPatientByName(@PathVariable String name) {
+
+        return patientService.findPatientByName(name);
+    }
+
+    @PutMapping("/patients/update")
+    public ResponseEntity<String> updatePatient(@RequestBody Patient patient) {
+        return patientService.updatePatient(patient);
     }
 }
