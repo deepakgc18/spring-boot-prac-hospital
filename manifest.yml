@@ -1,0 +1,6 @@
+applications:
+  - name: hospital
+    host: hospital
+    path: target/hospital-0.0.1-SNAPSHOT.jar
+    domain: cfapps.us10.hana.ondemand.com
+    memory: 1G

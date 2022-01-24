@@ -1,17 +1,17 @@
 package com.example.hospital.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",unique = true)
     private String id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "age")
     private int age;
 
     public Patient(){
