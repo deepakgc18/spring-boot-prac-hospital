@@ -22,18 +22,13 @@ public class CloudDatabaseConfig {
     public DataSource dataSource() throws Exception {
 
         JSONObject obj = new JSONObject(System.getenv("VCAP_SERVICES"));
-        System.out.println(obj.toString());
+
         JSONArray arr = obj.getJSONArray("hana");
         String url = arr.getJSONObject(0).getJSONObject("credentials").getString("url");
         String user = arr.getJSONObject(0).getJSONObject("credentials").getString("user");
         String password = arr.getJSONObject(0).getJSONObject("credentials").getString("password");
         String schema = arr.getJSONObject(0).getJSONObject("credentials").getString("schema");
-//        HikariDataSource hdb = new HikariDataSource();
-//        hdb.setJdbcUrl(url);
-//        hdb.setUsername(user);
-//        hdb.setPassword(password);
-//        hdb.setSchema(schema);
-//        return hdb;
+
         return DataSourceBuilder.create()
                 .type(HikariDataSource.class)
                 .driverClassName(com.sap.db.jdbc.Driver.class.getName())
